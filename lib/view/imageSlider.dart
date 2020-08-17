@@ -17,6 +17,9 @@ class ImageSlider extends StatelessWidget {
     SliderItems(
       image: "assets/images/car_top1.png",
     ),
+    SliderItems(
+      image: "assets/images/orange_car.png",
+    ),
   ];
 
   @override
@@ -57,7 +60,7 @@ class ImageSlider extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(width: 230,),
+                  SizedBox(width: 180,),
                   FlatButton(
                     onPressed: (){
                       _controller.nextPage(duration: Duration(milliseconds: 800), curve: Curves.easeInOutQuint);

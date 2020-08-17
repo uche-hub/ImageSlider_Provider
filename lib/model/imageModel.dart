@@ -7,9 +7,6 @@ class ImageModel with ChangeNotifier{
     return _currentImage;
   }
 
-//  get currentImage => this._currentImage;
-//
-//  set currentImage(index) => this._currentImage;
 
   void imageSlider(int index){
     _currentImage = index;
