@@ -26,6 +26,13 @@ class ImageSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final imageModel = Provider.of<ImageModel>(context, listen: false);
 
+    void _nextImage() {
+      imageModel.nextImage();
+    }
+
+    void _prevImage() {
+      imageModel.prevImage();
+    }
 
     return Scaffold(
       body: Stack(
@@ -49,9 +56,7 @@ class ImageSlider extends StatelessWidget {
               Row(
                 children: <Widget>[
                   FlatButton(
-                    onPressed: (){
-                      _controller.previousPage(duration: Duration(milliseconds: 800), curve: Curves.easeInOutQuint);
-                    },
+                    onPressed: _prevImage,
                     child: Text(
                       "Prev",
                       style: TextStyle(
@@ -60,11 +65,8 @@ class ImageSlider extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(width: 180,),
                   FlatButton(
-                    onPressed: (){
-                      _controller.nextPage(duration: Duration(milliseconds: 800), curve: Curves.easeInOutQuint);
-                    },
+                    onPressed: _nextImage,
                     child: Text(
                         "Next",
                       style: TextStyle(

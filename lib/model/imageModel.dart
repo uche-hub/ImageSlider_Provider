@@ -12,4 +12,24 @@ class ImageModel with ChangeNotifier{
     _currentImage = index;
     notifyListeners();
   }
+
+  void prevImage() {
+    _currentImage -= 1;
+    if (_currentImage == 0) {
+      _currentImage = 0;
+    } else if (_currentImage < 0) {
+      _currentImage = 3;
+    }
+    notifyListeners();
+  }
+
+  void nextImage() {
+    _currentImage += 1;
+    if (_currentImage == 0) {
+      _currentImage = 0;
+    } else if (_currentImage > 3) {
+      _currentImage = 0;
+    }
+    notifyListeners();
+  }
 }
