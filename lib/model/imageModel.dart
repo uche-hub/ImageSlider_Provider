@@ -10,6 +10,11 @@ class ImageModel with ChangeNotifier{
 
   void imageSlider(int index){
     _currentImage = index;
+    if (_currentImage == 0) {
+      _currentImage = 0;
+    } else if (_currentImage > 3) {
+      _currentImage = 3;
+    }
     notifyListeners();
   }
 

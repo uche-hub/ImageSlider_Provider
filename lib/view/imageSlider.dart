@@ -24,62 +24,63 @@ class ImageSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageModel = Provider.of<ImageModel>(context, listen: false);
+    //final imageModel = Provider.of<ImageModel>(context, listen: false);
 
-    void _nextImage() {
-      imageModel.nextImage();
-    }
-
-    void _prevImage() {
-      imageModel.prevImage();
-    }
+//    void _nextImage() {
+//      imageModel.nextImage();
+//    }
+//
+//    void _prevImage() {
+//      imageModel.prevImage();
+//    }
 
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          PageView.builder(
-            onPageChanged: (value){
-              imageModel.imageSlider(value);
-            },
-            scrollDirection: Axis.horizontal,
-            controller: _controller,
-            itemCount: _images.length,
-            itemBuilder: (context, int index){
-              return Consumer<ImageModel>(
-                builder: (context, mImage, child) => _images[mImage.getImageSlider],
-              );
-            },
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  FlatButton(
-                    onPressed: _prevImage,
-                    child: Text(
-                      "Prev",
-                      style: TextStyle(
-                          color: Colors.red,
+      body: Consumer<ImageModel>(
+        builder: (context, mImage, child) => Stack(
+          children: <Widget>[
+            PageView.builder(
+              onPageChanged: (value){
+                mImage.imageSlider(value);
+              },
+              scrollDirection: Axis.horizontal,
+              controller: _controller,
+              itemCount: _images.length,
+              itemBuilder: (context, int index) =>
+                _images[mImage.getImageSlider],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    FlatButton(
+                      onPressed: mImage.prevImage,
+                      child: Text(
+                        "Prev",
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 20
+                        ),
+                      ),
+                    ),
+                    FlatButton(
+                      onPressed: mImage.nextImage,
+                      child: Text(
+                          "Next",
+                        style: TextStyle(
+                          color: Colors.blue,
                           fontSize: 20
+                        ),
                       ),
                     ),
-                  ),
-                  FlatButton(
-                    onPressed: _nextImage,
-                    child: Text(
-                        "Next",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 20
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          )
-        ],
+                  ],
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
